@@ -61,7 +61,7 @@ def booking_form():
                 student_id = request.form.get('student' + str(i))
                 if student_id:
                     student_ids.append(student_id)
-        elif (capacity == "kahlid_6"):
+        elif (capacity == "khalid_6"):
             for i in range(1, 7):
                 student_id = request.form.get('student' + str(i))
                 if student_id:
