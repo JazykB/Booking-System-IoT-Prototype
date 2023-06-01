@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Booking Form</title>
+  <style>
+    body {
+      height: 100vh;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #000;
+    }
+    
+    .container {
+      width: 100%;
+      max-width: 400px;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      background-color: #f5f5f5;
+    }
+    
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #000;
+    }
+    
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+      color: #000;
+    }
+
+    #capacity{
+      width: 99%; 
+    }
+    
+    select,
+    input[type="time"],
+    input[type="text"] {
+      width: 94%;
+      padding: 10px;
+      border: 1px solid #000;
+      border-radius: 3px;
+      font-size: 14px;
+      color: #000;
+    }
+    
+    .textbox-container {
+      margin-top: 10px;
+    }
+    
+    .textbox-label,
+    .textbox {
+      margin-top: 5px;
+    }
+    
+    .hidden {
+      display: none;
+    }
+    
+    .submit-btn {
+      width: 100%;
+      padding: 10px;
+      margin-top: 20px;
+      border: none;
+      border-radius: 3px;
+      background-color: #ff0000;
+      color: #fff;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    
+    .submit-btn:hover {
+      background-color: #cc0000;
+    }
+    .booking-link {
+            text-align: center;
+            margin-top: 20px;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #000000;
+            padding: 20px 0;
+        }
+
+        .booking-link a {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #e74c3c;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+
+        .booking-link a:hover {
+            background-color: #ff1900;
+        }
+  </style>
+  <script>
+    function showTextBoxes() {
+      var capacity = document.getElementById("capacity").value;
+      var textBoxes = document.getElementsByClassName("textbox");
+      var textBoxLabels = document.getElementsByClassName("textbox-label");
+
+      // Hide all textbox labels and textboxes
+      for (var i = 0; i < textBoxLabels.length; i++) {
+        textBoxLabels[i].classList.add("hidden");
+        textBoxes[i].classList.add("hidden");
+      }
+
+      // if (capacity > 0) {
+      //   for (var j = 0; j < capacity; j++) {
+      //     textBoxLabels[j].classList.remove("hidden");
+      //     textBoxes[j].classList.remove("hidden");
+      //   }
+      // }
+
+      if (capacity === "sana_4" || capacity === "andy_4") {
+        for (var j = 0; j < 4; j++) {
+          textBoxLabels[j].classList.remove("hidden");
+          textBoxes[j].classList.remove("hidden");
+        }
+      } else if (capacity === "kahlid_6") {
+        for (var j = 0; j < 6; j++) {
+          textBoxLabels[j].classList.remove("hidden");
+          textBoxes[j].classList.remove("hidden");
+        }
+      } else if (capacity === "mehrab_8") {
+        for (var j = 0; j < 8; j++) {
+          textBoxLabels[j].classList.remove("hidden");
+          textBoxes[j].classList.remove("hidden");
+        }
+      }
+
+    }
+
+    function validateForm(event) {
+      var capacity = document.getElementById("capacity").value;
+      var textBoxes = document.getElementsByClassName("textbox");
+      var minRequired;
+
+      if (capacity === "sana_4" || capacity === "andy_4") {
+        minRequired = 2;
+      } else if (capacity === "kahlid_6") {
+        minRequired = 3;
+      } else if (capacity === "mehrab_8") {
+        minRequired = 4;
+      }
+
+      var filledCount = 0;
+      for (var i = 0; i < textBoxes.length; i++) {
+        if (textBoxes[i].value !== "") {
+          filledCount++;
+        }
+      }
+
+      if (filledCount < minRequired) {
+        event.preventDefault();
+        alert("Please fill at least " + minRequired + " student IDs.");
+      }
+    }
+  </script>
+</head>
+<body>
+  <div class="container">
+    <h2>Booking Form</h2>
+    <form id="booking-form" method="post" onsubmit="validateForm(event)">
+        <label for="capacity">Room Name/Capacity:</label>
+        <select id="capacity" name="capacity" onchange="showTextBoxes()">
+          <option value="0">Select Capacity</option>
+          <option value="sana_4">4-Sana</option>
+          <option value="andy_4">4-Andy</option>
+          <option value="kahlid_6">6-Khalid</option>
+          <option value="mehrab_8">8-Mehrab</option>
+        </select>
+  
+        <label for="start_time">Start Time:</label>
+        <input type="time" id="start_time" name="start_time" required>
+  
+        <div class="textbox-container">
+          <label class="textbox-label hidden" for="student1">Student ID 1:</label>
+          <input class="textbox hidden" type="text" id="student1" name="student1" placeholder="Enter Student ID">
+        </div>
+  
+        <div class="textbox-container">
+          <label class="textbox-label hidden" for="student2">Student ID 2:</label>
+          <input class="textbox hidden" type="text" id="student2" name="student2" placeholder="Enter Student ID">
+        </div>
+  
+        <div class="textbox-container">
+          <label class="textbox-label hidden" for="student3">Student ID 3:</label>
+          <input class="textbox hidden" type="text" id="student3" name="student3" placeholder="Enter Student ID">
+        </div>
+  
+        <div class="textbox-container">
+          <label class="textbox-label hidden" for="student4">Student ID 4:</label>
+          <input class="textbox hidden" type="text" id="student4" name="student4" placeholder="Enter Student ID">
+        </div>
+  
+        <div class="textbox-container">
+          <label class="textbox-label hidden" for="student5">Student ID 5:</label>
+          <input class="textbox hidden" type="text" id="student5" name="student5" placeholder="Enter Student ID">
+        </div>
+  
+        <div class="textbox-container">
+          <label class="textbox-label hidden" for="student6">Student ID 6:</label>
+          <input class="textbox hidden" type="text" id="student6" name="student6" placeholder="Enter Student ID">
+        </div>
+  
+        <div class="textbox-container">
+          <label class="textbox-label hidden" for="student7">Student ID 7:</label>
+          <input class="textbox hidden" type="text" id="student7" name="student7" placeholder="Enter Student ID">
+        </div>
+  
+        <div class="textbox-container">
+          <label class="textbox-label hidden" for="student8">Student ID 8:</label>
+          <input class="textbox hidden" type="text" id="student8" name="student8" placeholder="Enter Student ID">
+        </div>
+  
+        <input class="submit-btn" type="submit" value="submit"></input>
+      </form>
+    </div>
+    <div class="booking-link">
+      <a href="/dashboard">Admin Dashboard</a>
+  </div>
+  </body>
+  </html>
+  
