@@ -59,10 +59,10 @@ def customCallbackSana_4(client, userdata, message):
     one_hour_before = now - timedelta(hours=1)
     now_str = now.strftime("%H:%M:%S")
     one_hour_before_str = one_hour_before.strftime("%H:%M:%S")
-    mycursor.execute("SELECT * from booking_v1 WHERE capacity = 'sana_4' AND start_time between '%s' AND '%s'" %(one_hour_before_str,now_str))
+    mycursor.execute("SELECT * from booking_v1 WHERE capacity = 'sana_4' AND start_time between '%s' AND '%s' LIMIT 1" %(one_hour_before_str,now_str))
     result = mycursor.fetchone()
     if (result is not None):
-        mycursor.execute("UPDATE admin_table SET occupied='%s', people=%d, noise=%s, temperature=%s WHERE room = 'sana_4' LIMIT 1" %('yes',people,noise,temperature))
+        mycursor.execute("UPDATE admin_table SET occupied='%s', people=%d, noise=%s, temperature=%s WHERE room = 'sana_4'" %('yes',people,noise,temperature))
     else:
         mycursor.execute("UPDATE admin_table SET occupied='%s', people=%d, noise=%s, temperature=%s WHERE room = 'sana_4'" %('no',people,noise,temperature))
     mydb.commit()
@@ -86,10 +86,10 @@ def customCallbackKhalid_6(client, userdata, message):
     one_hour_before = now - timedelta(hours=1)
     now_str = now.strftime("%H:%M:%S")
     one_hour_before_str = one_hour_before.strftime("%H:%M:%S")
-    mycursor.execute("SELECT * from booking_v1 WHERE capacity = 'khalid_6' AND start_time between '%s' AND '%s'" %(one_hour_before_str,now_str))
+    mycursor.execute("SELECT * from booking_v1 WHERE capacity = 'khalid_6' AND start_time between '%s' AND '%s' LIMIT 1" %(one_hour_before_str,now_str))
     result = mycursor.fetchone()
     if (result is not None):
-        mycursor.execute("UPDATE admin_table SET occupied='%s', people=%d, noise=%s, temperature=%s WHERE room = 'khalid_6' LIMIT 1" %('yes',people,noise,temperature))
+        mycursor.execute("UPDATE admin_table SET occupied='%s', people=%d, noise=%s, temperature=%s WHERE room = 'khalid_6'" %('yes',people,noise,temperature))
     else:
         mycursor.execute("UPDATE admin_table SET occupied='%s', people=%d, noise=%s, temperature=%s WHERE room = 'khalid_6'" %('no',people,noise,temperature))
     mydb.commit()
@@ -113,10 +113,10 @@ def customCallbackMerhab_8(client, userdata, message):
     one_hour_before = now - timedelta(hours=1)
     now_str = now.strftime("%H:%M:%S")
     one_hour_before_str = one_hour_before.strftime("%H:%M:%S")
-    mycursor.execute("SELECT * from booking_v1 WHERE capacity = 'mehrab_8' AND start_time between '%s' AND '%s'" %(one_hour_before_str,now_str))
+    mycursor.execute("SELECT * from booking_v1 WHERE capacity = 'mehrab_8' AND start_time between '%s' AND '%s'  LIMIT 1" %(one_hour_before_str,now_str))
     result = mycursor.fetchone()
     if (result is not None):
-        mycursor.execute("UPDATE admin_table SET occupied='%s', people=%d, noise=%s, temperature=%s WHERE room = 'mehrab_8' LIMIT 1" %('yes',people,noise,temperature))
+        mycursor.execute("UPDATE admin_table SET occupied='%s', people=%d, noise=%s, temperature=%s WHERE room = 'mehrab_8'" %('yes',people,noise,temperature))
     else:
         mycursor.execute("UPDATE admin_table SET occupied='%s', people=%d, noise=%s, temperature=%s WHERE room = 'mehrab_8'" %('no',people,noise,temperature))
     mydb.commit()

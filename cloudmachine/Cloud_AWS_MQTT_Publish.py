@@ -28,29 +28,29 @@ while 1:
 
     mycursor.execute("SELECT rfid, DATE_FORMAT(start_time, '%%H:%%i:%%s') FROM booking_v1 WHERE capacity = 'andy_4' AND start_time between '%s' AND '%s'" %(one_hour_before_str,now_str))
     booking_table = mycursor.fetchall()
-    print(booking_table)
-    if (booking_table != None):
+    if (booking_table):
+        print(booking_table)
         booking_table = str(booking_table)
         myMQTTClient.publish("rpi/booking", booking_table, 0)
 
     mycursor.execute("SELECT rfid, DATE_FORMAT(start_time, '%%H:%%i:%%s') FROM booking_v1 WHERE capacity = 'sana_4' AND start_time between '%s' AND '%s'" %(one_hour_before_str,now_str))
     booking_table = mycursor.fetchall()
-    print(booking_table)
-    if (booking_table != None):
+    if (booking_table):
+        print(booking_table)
         booking_table = str(booking_table)
         myMQTTClient.publish("sana_4/booking", booking_table, 0)
 
     mycursor.execute("SELECT rfid, DATE_FORMAT(start_time, '%%H:%%i:%%s') FROM booking_v1 WHERE capacity = 'khalid_6' AND start_time between '%s' AND '%s'" %(one_hour_before_str,now_str))
     booking_table = mycursor.fetchall()
-    print(booking_table)
-    if (booking_table != None):
+    if (booking_table):
+        print(booking_table)
         booking_table = str(booking_table)
         myMQTTClient.publish("khalid_6/booking", booking_table, 0)
 
     mycursor.execute("SELECT rfid, DATE_FORMAT(start_time, '%%H:%%i:%%s') FROM booking_v1 WHERE capacity = 'mehrab_8' AND start_time between '%s' AND '%s'" %(one_hour_before_str,now_str))
     booking_table = mycursor.fetchall()
-    print(booking_table)
-    if (booking_table != None):
+    if (booking_table):
+        print(booking_table)
         booking_table = str(booking_table)
         myMQTTClient.publish("mehrab_8/booking", booking_table, 0)
 
