@@ -105,16 +105,6 @@ def update_room_status(data):
 
 while True:
     try:
-        # Connect to MySQL server
-        mydb = mysql.connector.connect(
-            host="localhost",  # replace with your host
-            user="AndyPi",  # replace with your username
-            password="PiAndy",  # replace with your password
-            database="assignment03"  # replace with your database
-        )
-
-        mycursor = mydb.cursor()
-        
         read_serial = ser.readline().decode('utf-8').strip()  # read a '\n' terminated line
         if ":" in read_serial:  # assuming all sensor readings contain ':'
             key, value = read_serial.split(':')
@@ -140,8 +130,5 @@ while True:
             else:
                 print(f"RFID {rfid_value} is not in the booking table.")
                 send_rfid_to_arduino()  # Sending all RFID values to the Arduino
-        
-        mycursor.close()
-            
     except Exception as e:
         print(f"Error: {str(e)}")
